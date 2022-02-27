@@ -15,7 +15,28 @@ const loadCards = () => {
         const url = `https://deckofcardsapi.com/api/deck/new/draw/?count= ${searchText}`;
         fetch(url)
             .then(res => res.json())
-            .then(data => console.log(data.cards))
+            .then(data => displaySearchResult(data.cards))
     }
 
+}
+
+const displaySearchResult = (cards) => {
+    const parent = document.getElementById('search-result');
+    cards.forEach(card => {
+        console.log(card);
+        const div = document.createElement('div');
+        div.classList.add('col-md-4');
+        div.classList.add('mb-4');
+        div.innerHTML = `
+        <div class="card">
+        <img src="${card.image}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">${card.suit}</h5>
+            <p class="card-text">${card.code}</p>
+            <a href="#" class="btn btn-primary">Show more details</a>
+        </div>
+       </div>
+        `;
+        parent.appendChild(div);
+    });
 }
