@@ -9,7 +9,10 @@ const loadCards = () => {
 
     parent.innerText = '';
 
-    if (isNaN(searchText) || searchInput === '') {
+    if (searchText > 52) {
+        error.innerText = 'Please enter less thean 53';
+    }
+    else if (isNaN(searchText) || searchInput === '') {
         error.innerText = 'Please enter a valid number';
     } else if (searchText <= 0) {
         error.innerText = 'Please,make sure input geater than zero';
